@@ -11,7 +11,9 @@ import {
   Laptop,
   Moon,
   Palette,
+  Sparkles,
   Sun,
+  Lock,
 } from "lucide-react";
 import useMounted from "@/hooks/useMounted";
 
@@ -23,7 +25,7 @@ const THEME_ICONS: Record<string, React.ReactNode> = {
   "solarized-dark": <Cloud className="size-4" />,
 };
 
-const ThemeSelector = () => {
+const ThemeSelector = ({ hasAccess }: { hasAccess: boolean }) => {
   const [isOpen, setIsOpen] = useState(false);
   const mounted = useMounted();
   const { theme, setTheme } = useCodeEditorStore();
@@ -44,6 +46,13 @@ const ThemeSelector = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const handleLanguageSelect = (theme: string) => {
+    if (!hasAccess && theme !== "vs-dark") return;
+
+    setTheme(theme);
+    setIsOpen(false);
+  };
 
   if (!mounted) return null;
 
@@ -89,58 +98,75 @@ const ThemeSelector = () => {
               </p>
             </div>
 
-            {THEMES.map((t, index) => (
-              <motion.button
-                key={t.id}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: index * 0.1 }}
-                className={`
-                relative group w-full flex items-center gap-3 px-3 py-2.5 hover:bg-[#262637] transition-all duration-200
-                ${theme === t.id ? "bg-blue-500/10 text-blue-400" : "text-gray-300"}
-              `}
-                onClick={() => {
-                  setTheme(t.id);
-                  setIsOpen(false);
-                }}
-              >
-                {/* bg gradient */}
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 
-              group-hover:opacity-100 transition-opacity"
-                />
+            {THEMES.map((t, index) => {
+              const isLocked = !hasAccess && t.id !== "vs-dark";
+              console.log(isLocked);
 
-                {/* icon */}
-                <div
+              return (
+                <motion.button
+                  key={t.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: index * 0.1 }}
                   className={`
-                flex items-center justify-center size-8 rounded-lg
-                ${theme === t.id ? "bg-blue-500/10 text-blue-400" : "bg-gray-800/50 text-gray-400"}
-                group-hover:scale-110 transition-all duration-200
-              `}
+              relative group w-full flex items-center gap-3 px-3 py-2.5 hover:bg-[#262637] transition-all duration-200
+              ${isLocked ? "opacity-50" : ""}
+              ${isLocked && theme === t.id ? "bg-blue-500/10 text-blue-400" : ""}
+              ${isLocked && theme !== t.id ? "text-gray-500" : ""}
+              ${theme === t.id ? "bg-blue-500/10 text-blue-400" : "text-gray-300"}
+            `}
+                  disabled={isLocked}
+                  onClick={() => {
+                    setTheme(t.id);
+                    setIsOpen(false);
+                  }}
                 >
-                  {THEME_ICONS[t.id] || <CircleOff className="w-4 h-4" />}
-                </div>
-                {/* label */}
-                <span className="flex-1 text-left group-hover:text-white transition-colors">
-                  {t.label}
-                </span>
-
-                {/* color indicator */}
-                <div
-                  className="relative size-4 rounded-full border border-gray-600 
-                group-hover:border-gray-500 transition-colors"
-                  style={{ background: t.color }}
-                />
-
-                {/* active theme border */}
-                {theme === t.id && (
-                  <motion.div
-                    className="absolute inset-0 border-2 border-blue-500/30 rounded-lg"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  {/* bg gradient */}
+                  <div
+                    className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 
+            group-hover:opacity-100 transition-opacity"
                   />
-                )}
-              </motion.button>
-            ))}
+
+                  {/* icon */}
+                  <div
+                    className={`
+              flex items-center justify-center size-8 rounded-lg
+              ${theme === t.id ? "bg-blue-500/10 text-blue-400" : "bg-gray-800/50 text-gray-400"}
+              group-hover:scale-110 transition-all duration-200
+            `}
+                  >
+                    {THEME_ICONS[t.id] || <CircleOff className="w-4 h-4" />}
+                  </div>
+                  {/* label */}
+                  <span className="flex-1 text-left group-hover:text-white transition-colors">
+                    {t.label}
+                  </span>
+
+                  {/* color indicator */}
+                  {!isLocked && (
+                    <div
+                      className="relative size-4 rounded-full border border-gray-600 
+              group-hover:border-gray-500 transition-colors"
+                      style={{ background: t.color }}
+                    />
+                  )}
+
+                  {/* active theme border */}
+                  {theme === t.id && (
+                    <motion.div
+                      className="absolute inset-0 border-2 border-blue-500/30 rounded-lg"
+                      transition={{
+                        type: "spring",
+                        bounce: 0.2,
+                        duration: 0.6,
+                      }}
+                    />
+                  )}
+
+                  {isLocked && <Lock className="w-4 h-4 text-gray-500" />}
+                </motion.button>
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>

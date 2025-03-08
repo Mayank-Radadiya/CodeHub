@@ -91,6 +91,7 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
             <div className="max-h-[280px] overflow-y-auto overflow-x-hidden">
               {Object.values(LANGUAGE_CONFIG).map((lang, index) => {
                 const isLocked = !hasAccess && lang.id !== "javascript";
+                
 
                 return (
                   <motion.div
