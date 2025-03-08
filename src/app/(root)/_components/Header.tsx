@@ -7,6 +7,7 @@ import { Blocks, Code2, Sparkles } from "lucide-react";
 import UserProfileBtn from "./UserProfileBtn";
 import ThemeSelector from "./ThemeSelector";
 import LanguageSelector from "./LanguageSelector";
+import RunButton from "./RunButton";
 
 const Header = async () => {
   const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
@@ -92,7 +93,9 @@ const Header = async () => {
             </Link>
           )}
 
-          <SignedIn>{/* <RunButton /> */}</SignedIn>
+          <SignedIn>
+            <RunButton />
+          </SignedIn>
 
           <div className="pl-3 border-l border-gray-800">
             <UserProfileBtn />
