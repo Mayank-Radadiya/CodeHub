@@ -121,7 +121,7 @@ const EditorPanel = () => {
           {!clerk.loaded && <EditorPanelSkeleton />}
           {clerk.loaded && (
             <Editor
-              height="680px"
+              height="600px"
               language={LANGUAGE_CONFIG[language].monacoLanguage}
               onChange={handleEditorChange}
               theme={theme}
