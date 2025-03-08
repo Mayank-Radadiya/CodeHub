@@ -69,6 +69,7 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
         error: null,
       });
     },
+    
   };
 });
 

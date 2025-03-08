@@ -47,13 +47,6 @@ const ThemeSelector = ({ hasAccess }: { hasAccess: boolean }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleLanguageSelect = (theme: string) => {
-    if (!hasAccess && theme !== "vs-dark") return;
-
-    setTheme(theme);
-    setIsOpen(false);
-  };
-
   if (!mounted) return null;
 
   return (
@@ -69,6 +62,7 @@ const ThemeSelector = ({ hasAccess }: { hasAccess: boolean }) => {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" />
 
         <Palette className="w-4 h-4 text-gray-400 group-hover:text-gray-300 transition-colors" />
+       
 
         <span className="text-gray-300 min-w-[80px] text-left group-hover:text-white transition-colors">
           {currentTheme?.label}

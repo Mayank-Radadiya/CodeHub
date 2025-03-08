@@ -67,6 +67,7 @@ const Header = async () => {
               >
                 Snippets
               </span>
+              <Sparkles className="w-4 h-4 text-blue-400 animate-pulse" />
             </Link>
           </nav>
         </div>
@@ -84,7 +85,7 @@ const Header = async () => {
                 to-orange-500/10 hover:from-amber-500/20 hover:to-orange-500/20 
                 transition-all duration-300"
             >
-              <Sparkles className="w-4 h-4 text-amber-400 hover:text-amber-300" />
+              <Sparkles className="w-4 h-4 text-amber-400 hover:text-amber-300 animate-pulse" />
               <span className="text-sm font-medium text-amber-400/90 hover:text-amber-300">
                 Pro
               </span>
