@@ -152,9 +152,10 @@ const EditorPanel = () => {
           )}
         </div>
       </div>
-      {/* {isShareDialogOpen && (
-        <ShareSnippetDialog onClose={() => setIsShareDialogOpen(false)} />
-      )} */}
+      {isShareDialogOpen && (
+        // <ShareSnippetDialog onClose={() => setIsShareDialogOpen(false)} />
+        <></>
+      )}
     </div>
   );
 };

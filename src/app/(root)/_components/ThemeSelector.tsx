@@ -11,7 +11,6 @@ import {
   Laptop,
   Moon,
   Palette,
-  Sparkles,
   Sun,
   Lock,
 } from "lucide-react";
