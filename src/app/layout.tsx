@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ConvexClientProvider from "@/components/providers/ConvexClientProvider";
 import { Toaster } from "react-hot-toast";
-import Footer from "@/components/global/Footer";
 
 export const metadata: Metadata = {
   title: "CodeHub",
@@ -21,7 +20,6 @@ export default function RootLayout({
         <div className="flex-1 flex flex-col pt-2">
           <ConvexClientProvider>{children}</ConvexClientProvider>
         </div>
-        {/* <Footer /> */}
       </body>
     </html>
   );
