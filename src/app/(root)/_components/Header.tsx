@@ -3,11 +3,12 @@ import { ConvexHttpClient } from "convex/browser";
 import { api } from "../../../../convex/_generated/api";
 import { SignedIn } from "@clerk/nextjs";
 import Link from "next/link";
-import { Blocks, Code2, Sparkles } from "lucide-react";
+import { Blocks, Code2, Sparkles, LockIcon } from "lucide-react";
 import UserProfileBtn from "./UserProfileBtn";
 import ThemeSelector from "./ThemeSelector";
 import LanguageSelector from "./LanguageSelector";
 import RunButton from "./RunButton";
+import { cn } from "@/utils/cn";
 
 const Header = async () => {
   const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
@@ -68,6 +69,24 @@ const Header = async () => {
               >
                 Snippets
               </span>
+              <Sparkles className="w-4 h-4 text-blue-400 animate-pulse" />
+            </Link>
+          </nav>
+
+          <nav className="flex items-center space-x-1">
+            <Link
+              href="/ai"
+              className="relative group flex items-center gap-2 px-4 py-1.5 rounded-lg text-gray-300 bg-gray-800/50  hover:bg-blue-500/10 border border-gray-800 hover:border-blue-500/50 transition-all duration-300 shadow-lg overflow-hidden"
+            >
+              <div
+                className="absolute inset-0 bg-gradient-to-r from-blue-500/10 
+      to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"
+              />
+
+              <span className="text-sm font-medium relative z-10 transition-colors">
+                AI
+              </span>
+
               <Sparkles className="w-4 h-4 text-blue-400 animate-pulse" />
             </Link>
           </nav>

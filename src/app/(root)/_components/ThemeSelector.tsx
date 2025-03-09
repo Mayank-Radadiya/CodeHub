@@ -93,7 +93,6 @@ const ThemeSelector = ({ hasAccess }: { hasAccess: boolean }) => {
 
             {THEMES.map((t, index) => {
               const isLocked = !hasAccess && t.id !== "vs-dark";
-              console.log(isLocked);
 
               return (
                 <motion.button

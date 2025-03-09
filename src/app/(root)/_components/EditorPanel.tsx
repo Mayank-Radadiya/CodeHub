@@ -50,6 +50,7 @@ const EditorPanel = () => {
 
   if (!mounted) return null;
 
+  console.log(editor?.getValue.toString());
   return (
     <div className="relative">
       <div className="relative bg-[#12121a]/90 backdrop-blur rounded-xl border border-white/[0.05] p-4">
