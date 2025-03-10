@@ -23,6 +23,8 @@ export default defineSchema({
   snippets: defineTable({
     userId: v.string(),
     title: v.string(),
+    description: v.optional(v.string()),
+    tags: v.optional(v.array(v.string())),
     language: v.string(),
     code: v.string(),
     userName: v.string(), // store user's name for easy access
