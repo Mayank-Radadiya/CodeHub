@@ -9,6 +9,7 @@ import Image from "next/image";
 import { RotateCcwIcon, ShareIcon, TypeIcon } from "lucide-react";
 import { Editor } from "@monaco-editor/react";
 import { EditorPanelSkeleton } from "./EditorPanelSkeleton";
+import ShareSnippetDialog from "./ShareSnippetDialog";
 
 const EditorPanel = () => {
   const clerk = useClerk();
@@ -153,8 +154,7 @@ const EditorPanel = () => {
         </div>
       </div>
       {isShareDialogOpen && (
-        // <ShareSnippetDialog onClose={() => setIsShareDialogOpen(false)} />
-        <></>
+        <ShareSnippetDialog onClose={() => setIsShareDialogOpen(false)} />
       )}
     </div>
   );
