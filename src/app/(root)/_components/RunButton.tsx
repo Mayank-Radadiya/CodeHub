@@ -5,23 +5,30 @@ import {
   useCodeEditorStore,
 } from "@/store/useCodeEditorStore";
 import { useUser } from "@clerk/nextjs";
-// import { useMutation } from "convex/react";
+import { useMutation } from "convex/react";
 import { motion } from "framer-motion";
 import { Loader2, Play } from "lucide-react";
-// import { api } from "../../../../convex/_generated/api";
-
+import { api } from "../../../../convex/_generated/api";
 
 function RunButton() {
   const { user } = useUser();
-  const { runCode, isRunning } = useCodeEditorStore();
-//   const saveExecution = useMutation(api.codeExecutions.saveExecution);
+  const { runCode, isRunning, language, executionResult } =
+    useCodeEditorStore();
+  const saveExecution = useMutation(api.codeExecutions.saveExecution);
 
   const handleRun = async () => {
+    // run this code and save the result
     await runCode();
     const result = getExecutionResult();
 
+    // if user is logged in and result is not null, save the execution
     if (user && result) {
-     // todo...
+      await saveExecution({
+        language,
+        code: result.code,
+        output: result.output || undefined,
+        error: result.error || undefined,
+      });
     }
   };
 
