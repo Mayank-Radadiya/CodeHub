@@ -30,12 +30,6 @@ const AiOutputPanel = () => {
     }
   };
 
-  // // Optional: Auto-fetch review when language changes
-  // useEffect(() => {
-  //   // Comment this out if you only want manual triggering via the button
-  //   // fetchReview();
-  // }, [language]);
-
   return (
     <div className="relative bg-[#181825] rounded-xl p-4 ring-1 ring-gray-800/50">
       <div className="flex justify-between items-center mb-4">
@@ -63,17 +57,25 @@ const AiOutputPanel = () => {
       </div>
 
       {loading && (
-        <div className="flex justify-center my-4">
+        <div className="flex justify-center my-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
           <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
         </div>
       )}
 
-      {aiReview && (
-        <div className="prose prose-sm max-w-none prose-invert">
-          <div
-            className="relative bg-[#1e1e2e]/50 backdrop-blur-sm border border-[#313244] 
-        rounded-xl p-4 h-[650px] overflow-auto font-mono text-sm"
-          >
+      <div className="prose prose-sm max-w-none prose-invert">
+        <div
+          className="relative bg-[#1e1e2e]/50 backdrop-blur-sm border border-[#313244] 
+        rounded-xl p-4 h-[610px] overflow-auto font-mono text-sm"
+        >
+          {!aiReview && !loading && (
+            <div className="flex justify-center items-center h-full">
+              <p className="text-gray-400">
+                No review available. Click "Get AI Review" to generate one.
+              </p>
+              
+            </div>
+          )}
+          {aiReview && (
             <ReactMarkdown
               components={{
                 code({
@@ -108,9 +110,9 @@ const AiOutputPanel = () => {
             >
               {aiReview}
             </ReactMarkdown>
-          </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

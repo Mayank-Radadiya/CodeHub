@@ -20,7 +20,6 @@ const AiEditorPanel = () => {
     if (value) localStorage.setItem(`editor-code-${language}`, value);
   };
   if (!mounted) return null;
-  
 
   return (
     <>
@@ -47,7 +46,7 @@ const AiEditorPanel = () => {
           {!clerk.loaded && <EditorPanelSkeleton />}
           {clerk.loaded && (
             <Editor
-              height="650px"
+              height="610px"
               language={LANGUAGE_CONFIG[language].monacoLanguage}
               theme={theme}
               onChange={handleEditorChange}
