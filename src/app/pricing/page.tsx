@@ -3,12 +3,9 @@ import { ConvexHttpClient } from "convex/browser";
 import { api } from "../../../convex/_generated/api";
 import { ENTERPRISE_FEATURES, FEATURES } from "./_constants";
 import { Star } from "lucide-react";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
-import LoginButton from "@/components/global/LoginButton";
 import NavigationHeader from "@/components/global/NavigationHeader";
 import FeatureCategory from "./_components/FeatureCategory";
 import FeatureItem from "./_components/FeatureItem";
-import ProPlanView from "./_components/ProPlanView";
 import UpgradeButton from "./_components/UpgradeButton";
 import Footer from "@/components/global/Footer";
 
@@ -19,14 +16,14 @@ async function PricingPage() {
     userId: user?.id || "",
   });
 
-  if (convexUser?.isPro) return <ProPlanView />;
-
   return (
     <div
       className="relative min-h-screen bg-[#0a0a0f] selection:bg-blue-500/20
      selection:text-blue-200"
     >
-      <NavigationHeader />
+      <div className="px-6 py-4">
+        <NavigationHeader />
+      </div>
 
       {/* main content */}
 
@@ -100,7 +97,7 @@ async function PricingPage() {
                   <div className="flex items-baseline justify-center gap-2 mb-4">
                     <span className="text-2xl text-gray-400">$</span>
                     <span className="text-6xl font-semibold bg-gradient-to-r from-gray-100 to-gray-300 text-transparent bg-clip-text">
-                      99.99
+                      9.99
                     </span>
                     <span className="text-xl text-gray-400">one-time</span>
                   </div>
@@ -120,13 +117,7 @@ async function PricingPage() {
 
                 {/* CTA */}
                 <div className="flex justify-center">
-                  <SignedIn>
-                    <UpgradeButton />
-                  </SignedIn>
-
-                  <SignedOut>
-                    <LoginButton />
-                  </SignedOut>
+                  <UpgradeButton isPro={convexUser?.isPro} />
                 </div>
               </div>
             </div>

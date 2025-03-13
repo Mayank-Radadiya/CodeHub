@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased flex flex-col bg-gradient-to-b from-gray-900 to-gray-950 text-gray-100">
         <Toaster />
-        <div className="flex-1 flex flex-col pt-2">
+        <div className="flex-1 flex flex-col">
           <ConvexClientProvider>{children}</ConvexClientProvider>
         </div>
       </body>
