@@ -97,12 +97,12 @@ async function PricingPage() {
                   <div className="flex items-baseline justify-center gap-2 mb-4">
                     <span className="text-2xl text-gray-400">$</span>
                     <span className="text-6xl font-semibold bg-gradient-to-r from-gray-100 to-gray-300 text-transparent bg-clip-text">
-                      9.99
+                      49.99
                     </span>
                     <span className="text-xl text-gray-400">one-time</span>
                   </div>
                   <p className="text-gray-400 text-lg">
-                    Unlock the full potential of CodeCraft
+                    Unlock the full potential of CodeHub
                   </p>
                 </div>
 
