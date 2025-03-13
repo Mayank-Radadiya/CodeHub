@@ -1,12 +1,15 @@
+"use client";
 import { NextPage } from "next";
+import SnippetList from "./_components/SnippetList";
+import NavigationHeader from "@/components/global/NavigationHeader";
 
-interface PageProps {}
-
-const Page: NextPage<PageProps> = ({}) => {
+const Page: NextPage = () => {
   return (
-    <div>
-      <h1>Title: new Page</h1>
-      <p>Page</p>
+    <div className="w-full h-full">
+      <div className="px-16">
+        <NavigationHeader />
+      </div>
+      <SnippetList />
     </div>
   );
 };

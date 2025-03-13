@@ -70,9 +70,8 @@ const AiOutputPanel = () => {
           {!aiReview && !loading && (
             <div className="flex justify-center items-center h-full">
               <p className="text-gray-400">
-                No review available. Click "Get AI Review" to generate one.
+                Click on Get AI Review Button to generate one.
               </p>
-              
             </div>
           )}
           {aiReview && (
