@@ -27,7 +27,7 @@ export const createSnippets = mutation({
       userId: identity.subject,
       userName: user.name,
       title: args.title,
-      description: args.description,
+      description: args.description ?? "",
       code: args.code,
       language: args.language,
     });
@@ -127,6 +127,7 @@ export const deleteSnippet = mutation({
       throw new Error("Not authorized to delete this snippet");
     }
 
+    // Delete the snippet with all its comments and stars
     const comments = await ctx.db
       .query("snippetComments")
       .withIndex("by_snippet_id")
@@ -150,3 +151,35 @@ export const deleteSnippet = mutation({
     await ctx.db.delete(args.snippetId);
   },
 });
+
+export const starSnippet = mutation({
+  args: {
+    snippetId: v.id("snippets"),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Not authenticated");
+
+    // Check if the user already starred the snippet
+    const existingStar = await ctx.db
+      .query("stars")
+      .withIndex("by_user_id_and_snippet_id")
+      .filter(
+        (q) =>
+          q.eq(q.field("userId"), identity.subject) &&
+          q.eq(q.field("snippetId"), args.snippetId)
+      )
+      .first();
+
+    if (existingStar) {
+      // If the star exists, delete it
+      await ctx.db.delete(existingStar._id);
+    } else {
+      // Otherwise, create a new star
+      await ctx.db.insert("stars", {
+        userId: identity.subject,
+        snippetId: args.snippetId,
+      });
+    }
+  }
+})

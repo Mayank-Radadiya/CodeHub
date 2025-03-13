@@ -6,7 +6,7 @@ import NavigationHeader from "@/components/global/NavigationHeader";
 const Page: NextPage = () => {
   return (
     <div className="w-full h-full">
-      <div className="px-16">
+      <div className="px-16 rounded-md">
         <NavigationHeader />
       </div>
       <SnippetList />

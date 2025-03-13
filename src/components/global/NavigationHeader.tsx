@@ -5,7 +5,7 @@ import Link from "next/link";
 
 function NavigationHeader() {
   return (
-    <div className="sticky top-0 z-50 w-full border-b border-gray-800/50 bg-gray-950/80 backdrop-blur-xl backdrop-saturate-150">
+    <div className="sticky top-0 z-50 w-full border-b border-gray-800/50 bg-gray-950/80 backdrop-blur-xl backdrop-saturate-150 rounded-md shadow-lg">
       <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5" />
       <div className="max-w-7xl mx-auto px-4">
         <div className="relative h-16 flex items-center justify-between">

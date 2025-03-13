@@ -26,7 +26,7 @@ function SnippetList() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
 
-  const itemsPerPage = 6;
+  const itemsPerPage = 9;
 
   // Paginated snippets query
   const paginatedResult = useQuery(api.snippets.getSnippets, {
@@ -49,7 +49,6 @@ function SnippetList() {
       setSnippets(
         newSnippets.map((snippet) => ({
           ...snippet,
-          description: snippet.description || "",
         }))
       );
       setNextCursor(paginatedResult.continueCursor);
@@ -78,7 +77,6 @@ function SnippetList() {
       ? filterSnippets(
           allSnippetsResult.map((snippet) => ({
             ...snippet,
-            description: snippet.description || "",
           }))
         )
       : filterSnippets(snippets);
