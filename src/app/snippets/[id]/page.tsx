@@ -13,6 +13,7 @@ import { Clock, Code, MessageSquare, User } from "lucide-react";
 import NavigationHeader from "@/components/global/NavigationHeader";
 import Image from "next/image";
 import CopyButton from "./_components/CopyButton";
+import Comments from "./_components/Comments";
 
 const Page = () => {
   const snippetId = useParams().id;
@@ -118,7 +119,7 @@ const Page = () => {
               />
             </div>
 
-            {/* <Comments snippetId={snippet._id} /> */}
+            <Comments snippetId={snippet._id} />
           </div>
         </main>
       </div>
