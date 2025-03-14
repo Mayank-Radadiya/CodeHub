@@ -4,11 +4,11 @@ import { api } from "../../../../convex/_generated/api";
 import { SignedIn } from "@clerk/nextjs";
 import Link from "next/link";
 import { Blocks, Code2, LockIcon, Sparkles } from "lucide-react";
-import UserProfileBtn from "./UserProfileBtn";
 import ThemeSelector from "./ThemeSelector";
 import LanguageSelector from "./LanguageSelector";
 import RunButton from "./RunButton";
 import { cn } from "@/utils/cn";
+import HeaderProfileBtn from "./UserProfileBtn";
 
 const Header = async () => {
   const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
@@ -118,7 +118,7 @@ const Header = async () => {
           </SignedIn>
 
           <div className="pl-3 border-l border-gray-800">
-            <UserProfileBtn />
+            <HeaderProfileBtn />
           </div>
         </div>
       </div>
