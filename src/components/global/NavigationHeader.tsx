@@ -1,5 +1,5 @@
 import HeaderProfileBtn from "@/app/(root)/_components/UserProfileBtn";
-import { Blocks, Code2, Sparkles } from "lucide-react";
+import { Blocks, Code2, Sparkles, User } from "lucide-react";
 import Link from "next/link";
 
 function NavigationHeader() {
@@ -87,6 +87,15 @@ function NavigationHeader() {
             </Link>
 
             {/* profile button */}
+            <Link href="/profile">
+              {/* <HeaderProfileBtn /> */}
+              <div
+                className="flex items-center gap-2 px-4 py-1.5 rounded-lg border border-gray-800/50 bg-gray-800/50 hover:bg-blue-500/10 
+                transition-all duration-300 shadow-lg overflow-hidden"
+              >
+                <User className="h-4 w-4 hover:text-slate-400" />
+              </div>
+            </Link>
             <HeaderProfileBtn />
           </div>
         </div>
