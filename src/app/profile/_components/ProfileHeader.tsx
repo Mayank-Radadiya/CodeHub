@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Id } from "../../../../convex/_generated/dataModel";
-import Image from "next/image";
 import { UserResource } from "@clerk/types";
 
 interface ProfileHeaderProps {
