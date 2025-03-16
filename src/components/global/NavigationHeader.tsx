@@ -51,8 +51,9 @@ function NavigationHeader() {
               </span>
             </Link>
 
+            {/* Ai Link */}
             <Link
-              href="/snippets"
+              href="/ai"
               className="relative group flex items-center gap-2 px-4 py-1.5 rounded-lg text-gray-300 bg-gray-800/50 
                 hover:bg-blue-500/10 border border-gray-800 hover:border-blue-500/50 transition-all duration-300 shadow-lg overflow-hidden"
             >
@@ -60,18 +61,18 @@ function NavigationHeader() {
                 className="absolute inset-0 bg-gradient-to-r from-blue-500/10 
                 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"
               />
-              <Code2 className="w-4 h-4 relative z-10 group-hover:rotate-3 transition-transform" />
+
+              <Sparkles className="w-4 h-4 text-blue-400 animate-pulse" />
               <span
                 className="text-sm font-medium relative z-10 group-hover:text-white
                  transition-colors"
               >
-                Snippets
+                Ai
               </span>
-              <Sparkles className="w-4 h-4 text-blue-400 animate-pulse" />
             </Link>
           </div>
 
-          {/* right rection */}
+          {/* right section */}
           <div className="flex items-center gap-4">
             <Link
               href="/pricing"
